@@ -323,7 +323,7 @@ The reconnection procedure applies in two cases:
 The procedure must be followed strictly in this order:
 
 1. **Stop processing events** from the current SSE stream immediately.
-2. Call `DELETE /disconnect` to release the server-side connection slot.
+2. If **not** triggered by a reconnect event: call `DELETE /disconnect` to release the server-side connection slot.
 3. Call `GET /sse` to establish a new connection.
    - If triggered by a `reconnect` event: include `connection_uuid` as a query parameter.
    - If triggered by the heartbeat watchdog or a network error: omit `connection_uuid`.
