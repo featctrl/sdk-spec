@@ -83,7 +83,7 @@ The `Flag` object is the core data structure distributed to SDK clients. It repr
 
 ## 2.2 Endpoints
 
-All endpoints are reachable at the base URL `https://sdk.featctrl.com` (default). This base URL can be overridden via the `FEATCTRL_SDK_URL` environment variable.
+All endpoints are reachable at the base URL `https://sdk.featctrl.com` (default). This base URL can be overridden via the `FEATCTRL_URL` environment variable.
 
 ---
 
@@ -310,7 +310,7 @@ The SDK maintains a persistent SSE connection and keeps its flag cache up to dat
 
 The SDK establishes a connection solely to receive the initial `flags.snapshot`, then immediately calls `DELETE /disconnect` and closes the stream. No further events are processed. This mode is suitable for short-lived processes or batch jobs.
 
-The mode must be configurable via the `FEATCTRL_SDK_MODE` environment variable (`livestreaming` or `snapshot`).
+The mode must be configurable via the `FEATCTRL_MODE` environment variable (`livestreaming` or `snapshot`).
 
 ---
 
@@ -339,7 +339,7 @@ The procedure must be followed strictly in this order:
 The SDK must maintain a client-side watchdog timer tracking the time elapsed since the last `heartbeat` event was received.
 
 - On each received `heartbeat` event: reset the watchdog timer.
-- If no `heartbeat` is received within the configured watchdog window (`FEATCTRL_SDK_HEARTBEAT_WATCHDOG_SECS`, default: `120s`): initiate the reconnection procedure.
+- If no `heartbeat` is received within the configured watchdog window (`FEATCTRL_HEARTBEAT_WATCHDOG_SECS`, default: `120s`): initiate the reconnection procedure.
 
 This mechanism ensures the SDK detects silent connection losses that would otherwise go unnoticed (no network error raised, no event received).
 
@@ -369,7 +369,7 @@ The following distinction applies during degraded mode:
 
 | Variable | Type | Default | Description |
 |---|---|---|---|
-| `FEATCTRL_SDK_URL` | `string` | `https://sdk.featctrl.com` | Base URL of the featctrl SDK API. |
+| `FEATCTRL_URL` | `string` | `https://sdk.featctrl.com` | Base URL of the featctrl SDK API. |
 | `FEATCTRL_MODE` | `string` | `livestreaming` | Operating mode. Accepted values: `livestreaming`, `snapshot`. |
 | `FEATCTRL_HEARTBEAT_WATCHDOG_SECS` | `integer` | `120` | Maximum number of seconds allowed between two consecutive `heartbeat` events before triggering a reconnection. |
 | `FEATCTRL_MAX_RETRIES` | `integer` | unlimited | Maximum number of `GET /sse` retry attempts in degraded mode. |
