@@ -1,8 +1,8 @@
 # featctrl SDK Specifications
 
-**Version:** 0.1.0
-**Status:** Draft
-**Last updated:** 2026-04-23
+**Version:** 0.1.0  
+**Status:** Draft  
+**Last updated:** 2026-04-23  
 
 ---
 
