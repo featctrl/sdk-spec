@@ -1,3 +1,32 @@
+# featctrl SDK Specifications
+
+**Version:** 0.1.0
+**Status:** Draft
+**Last updated:** 2026-04-23
+
+---
+
+## Introduction
+
+This document defines the specifications that any featctrl SDK implementation must conform to. It is intended for SDK authors and describes the protocol, data models, endpoints, and behavioural constraints required to interact correctly with the featctrl platform.
+
+The specifications cover the full lifecycle of an SDK connection: establishing a real-time feature flag stream, maintaining it through heartbeats and reconnections, and gracefully terminating it. They also define the expected behaviour in degraded conditions and the configuration surface exposed to end users.
+
+All requirements expressed with the keyword **must** are mandatory. Requirements expressed with **should** are strongly recommended but not strictly enforced.
+
+---
+
+## Table of Contents
+
+1. [Lifecycle](#1-lifecycle)
+2. [Normative Reference](#2-normative-reference)
+   - [2.1 Data Models](#21-data-models)
+   - [2.2 Endpoints](#22-endpoints)
+   - [2.3 SSE Events](#23-sse-events)
+   - [2.4 Implementation Constraints](#24-implementation-constraints)
+
+---
+
 # 1. Lifecycle
 
 ```mermaid
